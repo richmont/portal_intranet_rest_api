@@ -14,9 +14,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+from rest_framework import generics
+from intranet_api.models.Setor import Setor
+from intranet_api.models.Loja import Loja
+from intranet_api.models.Contato import Contato
+from intranet_api.serializers.SerializerSetor import SerializerSetor
+from intranet_api.serializers.SerializerLoja import SerializerLoja
+from intranet_api.serializers.SerializerContato import SerializerContato
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('setores/', generics.ListCreateAPIView.as_view(
+        queryset=Setor.objects.all(), 
+        serializer_class=SerializerSetor
+        ), name='setores-list'
+        ),
+    path('lojas/', generics.ListCreateAPIView.as_view(
+        queryset=Loja.objects.all(), 
+        serializer_class=SerializerLoja
+        ), name='loja-list'
+        ),
+    path('contatos/', generics.ListCreateAPIView.as_view(
+        queryset=Contato.objects.all(), 
+        serializer_class=SerializerContato
+        ), name='contato-list'
+        ),
 ]
