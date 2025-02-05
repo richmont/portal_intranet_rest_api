@@ -16,7 +16,10 @@ from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+try:
+    load_dotenv(BASE_DIR / '.env')
+except:
+    print ('Cannot load dotenv variables. Is python-dotenv package installed?')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,7 +30,7 @@ SECRET_KEY = os.getenv('secret_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.13.4.206']
 
 
 # Application definition
@@ -79,8 +82,14 @@ WSGI_APPLICATION = 'intranet_projeto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('engine'),
+        'NAME': os.getenv('name'),
+        'USER': os.getenv('user'),
+        'PASSWORD': os.getenv('password'),
+        'HOST': os.getenv('host'),
+        'PORT': os.getenv('port')
     }
 }
 
@@ -107,9 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Belem'
 
 USE_I18N = True
 
