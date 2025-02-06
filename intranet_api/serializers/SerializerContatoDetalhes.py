@@ -5,6 +5,7 @@ from intranet_api.models import Contato
 class SerializerContatoDetalhes(serializers.ModelSerializer):
     setor_nome = serializers.SerializerMethodField()
     #setor = serializers.StringRelatedField()
+    loja_codigo = serializers.SerializerMethodField()
     loja_nome = serializers.SerializerMethodField()
     #loja = serializers.StringRelatedField()
 
@@ -17,4 +18,4 @@ class SerializerContatoDetalhes(serializers.ModelSerializer):
     class Meta:
         model = Contato
         #fields = '__all__'
-        fields = ['nome', 'ramal', 'email', 'setor_nome', 'loja_nome']
+        fields = ['nome', 'ramal', 'email', 'setor_nome', 'loja_codigo', 'loja_nome']
