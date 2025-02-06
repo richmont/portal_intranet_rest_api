@@ -24,6 +24,7 @@ from intranet_api.models.Contato import Contato
 from intranet_api.serializers.SerializerSetor import SerializerSetor
 from intranet_api.serializers.SerializerLoja import SerializerLoja
 from intranet_api.serializers.SerializerContato import SerializerContato
+from intranet_api.serializers.SerializerContatoDetalhes import SerializerContatoDetalhes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +41,11 @@ urlpatterns = [
     path('contatos/', generics.ListCreateAPIView.as_view(
         queryset=Contato.objects.all(), 
         serializer_class=SerializerContato
+        ), name='contato-list'
+        ),
+    path('contatos_detalhes/', generics.ListCreateAPIView.as_view(
+        queryset=Contato.objects.all(), 
+        serializer_class=SerializerContatoDetalhes
         ), name='contato-list'
         ),
 ]
