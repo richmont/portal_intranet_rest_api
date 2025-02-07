@@ -31,11 +31,7 @@ SECRET_KEY = os.getenv('secret_key')
 DEBUG = True
 
 ALLOWED_HOSTS = ['10.13.4.206','127.0.0.1']
-
-CORS_ALLOWED_ORIGINS = [
-    "http://10.13.4.206",
-    "http://127.0.0.1",
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -52,9 +48,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
