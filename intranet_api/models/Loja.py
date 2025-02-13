@@ -8,3 +8,5 @@ class Loja(models.Model):
     cnpj = models.CharField(max_length=14)
     codigo = models.IntegerField()
     prefixo_ramal = models.IntegerField()
+    def __str__(self):
+        return str(self.nome)
